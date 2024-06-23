@@ -1,0 +1,24 @@
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+
+}
+
+.marquee {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  box-sizing: border-box;
+  animation: marquee 20s linear infinite;
+  justify-content: space-between;
+  gap: 2rem;
+
+}
+
+@keyframes marquee {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
