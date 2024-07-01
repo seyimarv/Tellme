@@ -32,8 +32,8 @@ export default {
       textCard: "#FFFFFF", // Card text color
       button: "#D4AF37", // Button background color
       background: "#131313", // Overall background color (theme)
-      primaryDark: "#004A69", // Primary dark color
-      secondaryDark: "#002C3F", // Secondary dark color
+      primaryDark: "#2B2B2B", // Primary dark color
+      secondaryDark: "#5F5F5F", // Secondary dark color
       active: "#006792", // Active color
       danger: "#FF5B6B", // Red color
       success: "#39BA66", // Green color
@@ -64,6 +64,7 @@ export default {
         boldAccent: "#66BEE3", // Bold secondary text color
         light: "#FAFAFA", // Light text color
         card: "#FFFFFF",
+        dark: "#5F5F5F",
       },
       container: {
         center: true,
