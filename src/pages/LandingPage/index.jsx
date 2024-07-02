@@ -11,6 +11,7 @@ import LogoList from "./components/logos";
 import Featured from "./components/Featured";
 import JoinUs from "./components/JoinUs";
 import Testimonials from "./components/testimonials";
+import Footer from "../../components/Footer";
 
 const AboutUsList = [
   {
@@ -39,7 +40,7 @@ const AboutUsList = [
   // },
 ];
 
-const Dashboard = () => {
+const LandingPage = () => {
   return (
     <div>
       <div
@@ -94,8 +95,9 @@ const Dashboard = () => {
       <Featured />
       <JoinUs />
       <Testimonials />
+      <Footer />
     </div>
   );
 };
 
-export default Dashboard;
+export default LandingPage;

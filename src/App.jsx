@@ -1,16 +1,12 @@
 import "./App.css";
 import Footer from "./components/Footer";
-import Login from "./pages/Authentication/Login";
-import Signup from "./pages/Authentication/signup";
-import Dashboard from "./pages/Dashboard";
+import * as React from "react";
+import RouteProvider from "./router";
 
 function App() {
   return (
     <div className="h-full bg-primary overflow-auto">
-      {/* <Dashboard />
-      <Footer /> */}
-      {/* <Login /> */}
-      <Signup />
+      <RouteProvider />
     </div>
   );
 }

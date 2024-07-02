@@ -4,7 +4,7 @@ import Alphalogo from '../../../assets/alpha.jsx';
 import BoltShift from '../../../assets/boltshift.jsx';
 import Degreeslogo from '../../../assets/degrees.jsx';
 import Byosythanse from '../../../assets/byosythanse.jsx';
-import Marquee from '../../../components/Marquee';
+import Marquee from '../../../components/Marquee/index.jsx';
 
 const logos = [
   { name: 'Acme', src: Acmelogo },
