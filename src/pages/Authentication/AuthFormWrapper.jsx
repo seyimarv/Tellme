@@ -7,10 +7,11 @@ const AuthFormWrapper = ({
   children,
   onGoogleSignIn,
   redirect = "Sign up",
+  onSubmit
 }) => {
   return (
     <div className="container max-w-sm flex flex-col gap-3 text-primary h-full">
-      <div className="flex flex-col gap-5 mt-4 h-[80%] justify-center">
+      <form className="flex flex-col gap-5 mt-4 h-[80%] justify-center" onSubmit={onSubmit}>
         <h4 className="text-2xl mb-2">{title}</h4>
         {children}
         <div className="flex items-center gap-3 py-2">
@@ -23,7 +24,7 @@ const AuthFormWrapper = ({
           <GoogleIcon />
           <span>Log in</span>
         </Button>
-      </div>
+      </form>
       <div className="m-auto">
         <p className="text-dark">
           Don't have an account? <a className="text-primary pl-1">{redirect}</a>

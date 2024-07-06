@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-const Button = ({ children, onClick, className, type = "button" }) => {
+const Button = ({ children, onClick, className, type = "button", isLoading }) => {
   return (
     <button
       type={type}
       onClick={onClick}
       className={`px-4 py-2 text-primary bg-button rounded-md ${className}`}
+      disabled={isLoading}
     >
-      {children}
+      {isLoading ? 'Loading...' : children}
     </button>
   );
 };
