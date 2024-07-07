@@ -4,6 +4,7 @@ import Button from "../../components/button";
 import { useFormik } from "formik";
 import { SignUpValidation } from "../../utils/validation";
 import { useSignupMutation } from "../../redux/query/apiSlice";
+import { useEffect } from "react";
 
 const Signup = () => {
   const [signup, { isLoading, error }] = useSignupMutation();
@@ -16,7 +17,7 @@ const Signup = () => {
     validationSchema: SignUpValidation,
     onSubmit: async (values, { setErrors }) => {
       const { email, password, username } = values;
-      const result = await signup({
+      await signup({
         email,
         password,
         additionalInfo: { username },
@@ -49,8 +50,8 @@ const Signup = () => {
           (formik.touched.email && formik.errors.email
             ? formik.errors.email
             : "") ||
-          (error?.error === "Firebase: Error (auth/email-already-in-use)" &&
-            "email already in use")
+          (error?.error === "Firebase: Error (auth/email-already-in-use)." &&
+            "Email already in use")
         }
       />
       <Input

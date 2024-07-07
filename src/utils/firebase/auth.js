@@ -22,6 +22,15 @@ export const signInWithGooglePopup = () =>
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
+export const getUser = async (uid) => {
+  if (!uid) return null;
+
+  const userDocRef = doc(db, "users", uid);
+  const userSnapshot = await getDoc(userDocRef);
+
+  return userSnapshot;
+};
+
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
@@ -29,8 +38,7 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
 
   const userDocRef = doc(db, "users", userAuth.uid);
-  const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot.exists());
+  const userSnapshot = await getUser(userAuth.uid);
 
   if (!userSnapshot.exists()) {
     const { email } = userAuth;
@@ -46,8 +54,6 @@ export const createUserDocumentFromAuth = async (
       console.log("error creating the user", error.message);
     }
   }
-
-  return userDocRef;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {

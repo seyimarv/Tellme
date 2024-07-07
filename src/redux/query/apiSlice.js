@@ -4,6 +4,7 @@ import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   createAuthUserWithEmailAndPassword,
+  signInWithGooglePopup,
 } from "../../utils/firebase/auth";
 
 export const apiSlice = createApi({
@@ -19,7 +20,7 @@ export const apiSlice = createApi({
           );
           await createUserDocumentFromAuth(userCredential.user, additionalInfo);
         } catch (error) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+          return { error: { status: "CUSTOM_ERROR", error: error?.message } };
         }
       },
     }),
@@ -32,11 +33,25 @@ export const apiSlice = createApi({
           );
           return { data: userCredential.user };
         } catch (error) {
-          return { error: { status: "CUSTOM_ERROR", error: error.message } };
+          return { error: { status: "CUSTOM_ERROR", error: error?.message } };
+        }
+      },
+    }),
+    googleSignIn: builder.mutation({
+      async queryFn() {
+        try {
+          const userCredential = await signInWithGooglePopup();
+          await createUserDocumentFromAuth(userCredential.user, {
+            username: userCredential.user.displayName,
+          });
+          //   return { data: userCredential.user };
+        } catch (error) {
+          return { error: { status: "CUSTOM_ERROR", error: error?.message } };
         }
       },
     }),
   }),
 });
 
-export const { useLoginMutation, useSignupMutation } = apiSlice;
+export const { useLoginMutation, useSignupMutation, useGoogleSignInMutation } =
+  apiSlice;
