@@ -17,7 +17,7 @@ const AuthFormWrapper = ({
         className="flex flex-col gap-5 mt-4 h-[80%] justify-center"
         onSubmit={onSubmit}
       >
-        <h4 className="text-2xl mb-2">{title}</h4>
+        <h4 className="text-2xl mb-2 text-center">{title}</h4>
         {children}
         <div className="flex items-center gap-3 py-2">
           <Divider /> <p className="text-dark">Or continue with</p> <Divider />

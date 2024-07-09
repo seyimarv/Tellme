@@ -14,18 +14,19 @@ const userSlice = createSlice({
     //   profilePicture: "",
     // },
     user: null,
+    isAuthenticated: false,
   },
   reducers: {
     setCurrentUser(state, action) {
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.isAuthenticated = action.payload.isAuthenticated;
     },
     clearCurrentUser(state) {
       state.user = null;
+      state.isAuthenticated = false;
     },
   },
 });
 
 export const { setCurrentUser } = userSlice.actions;
 export default userSlice.reducer;
-
-

@@ -5,6 +5,8 @@ import {
   signInAuthUserWithEmailAndPassword,
   createAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
+  onAuthStateChangedListener,
+  getUser
 } from "../../utils/firebase/auth";
 
 export const apiSlice = createApi({
@@ -50,8 +52,29 @@ export const apiSlice = createApi({
         }
       },
     }),
+    getUserData: builder.query({
+      async queryFn() {
+        return new Promise((resolve, reject) => {
+          const unsubscribe = onAuthStateChangedListener(async (user) => {
+            if (user) {
+              await createUserDocumentFromAuth(user);
+              const userSnapshot = await getUser(user.uid);
+              resolve({ data: userSnapshot.data() });
+            } else {
+              resolve({ data: null });
+            }
+          });
+          return () => unsubscribe();
+        });
+      },
+    //   keepUnusedDataFor: Infinity,
+    }),
   }),
 });
 
-export const { useLoginMutation, useSignupMutation, useGoogleSignInMutation } =
-  apiSlice;
+export const {
+  useLoginMutation,
+  useSignupMutation,
+  useGoogleSignInMutation,
+  useGetUserDataQuery,
+} = apiSlice;

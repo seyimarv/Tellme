@@ -8,23 +8,42 @@ import {
   onAuthStateChangedListener,
 } from "./utils/firebase/auth";
 import { setCurrentUser } from "./redux/user/reducer";
-import { selectUser } from "./redux/user/selector";
+import { selectUser, selectisAuthenticated } from "./redux/user/selector";
+import { useGetUserDataQuery } from "./redux/query/apiSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener(async (user) => {
-      if (user) {
-        await createUserDocumentFromAuth(user);
-        const userSnapshot = await getUser(user.uid);
-        dispatch(setCurrentUser(userSnapshot.data()));
-      }
-    });
+  // const user = useSelector(selectUser);
 
-    return unsubscribe;
-  }, [dispatch]);
-  console.log(user)
+  const { data: user, error, isLoading } = useGetUserDataQuery();
+
+  useEffect(() => {
+    if (user) {
+      dispatch(
+        setCurrentUser({
+          user,
+          isAuthenticated: true,
+        })
+      );
+    }
+  }, [user, dispatch]);
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChangedListener(async (user) => {
+  //     if (user) {
+  //       await createUserDocumentFromAuth(user);
+  //       const userSnapshot = await getUser(user.uid);
+  //       dispatch(
+  //         setCurrentUser({
+  //           user: userSnapshot.data(),
+  //           isAuthenticated: true,
+  //         })
+  //       );
+  //     }
+  //   });
+
+  //   return unsubscribe;
+  // }, [dispatch]);
   return (
     <div className="h-full bg-primary overflow-auto">
       <RouteProvider />

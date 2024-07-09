@@ -28,7 +28,7 @@ const stories = [
 
 const Featured = () => {
   return (
-    <div className="my-40 text-primary container">
+    <div className="my-40 text-primary container text-center">
       <h4 className="text-5xl mb-5">Example Stories</h4>
       <p className="max-w-md mx-auto">
         Have a story to share? Prepare to shine. With our versatile platform,

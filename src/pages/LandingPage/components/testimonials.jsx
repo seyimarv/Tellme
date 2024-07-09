@@ -39,7 +39,7 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div className="text-primary my-40 container">
-      <h4 className="text-5xl mb-10">Voices of Our Community</h4>
+      <h4 className="text-5xl mb-10 text-center">Voices of Our Community</h4>
       <Marquee speed={150}>
         {testimonials.map((testimonial, index) => (
           <div

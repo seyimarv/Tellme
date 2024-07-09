@@ -52,7 +52,7 @@ const LandingPage = () => {
       >
         <div className="relative z-10 flex flex-col md:h-screen">
           <Header />
-          <div className="flex flex-col justify-center absolute w-full h-[calc(100%-30rem)] top-1/2 -translate-y-1/2  my-auto">
+          <div className="flex flex-col justify-center absolute w-full h-[calc(100%-30rem)] top-1/2 -translate-y-1/2  my-auto text-center">
             <div>
               <h4 className="text-7xl text-primary pt-20">
                 Discover Untold Stories
@@ -76,7 +76,7 @@ const LandingPage = () => {
       <div className="bg-tertiary py-10">
         <LogoList />
       </div>
-      <div className="my-40 container mx-auto text-primary">
+      <div className="my-40 container mx-auto text-primary text-center">
         <h4 className="text-5xl text-primary">Why our Stories</h4>
         <div className="flex md:flex-row flex-col flex-wrap gap-12 mt-10">
           {AboutUsList.map((item, index) => (

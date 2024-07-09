@@ -17,8 +17,7 @@ const Login = () => {
     onSubmit: async (values, { setErrors }) => {
       const { email, password } = values;
       try {
-        const result = await login({ email, password });
-        console.log(result?.data);
+        await login({ email, password });
       } catch (e) {
         if (e?.error) {
           setErrors({ email: "Invalid email or password" });
