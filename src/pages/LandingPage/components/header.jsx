@@ -1,10 +1,12 @@
+import logo from "../../../assets/Logos/t-high-resolution-logo-transparent.png";
+
 const Header = () => {
   return (
     <header className="py-10 text-textPrimary h-30">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-left w-1/2">
           <a href="#" className="text-lg font-bold">
-            Tellme
+            <img src={logo} alt="Tellme" className="w-20 h-auto" />
           </a>
         </div>
         <nav className="hidden md:flex space-x-4 flex items-center space-x-4 flex-grow justify-between">

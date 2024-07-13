@@ -1,7 +1,9 @@
+import Sidebar from "../../components/Sidebar";
+
 const Dashboard = () => {
   return (
     <div>
-      <p>Loged in!</p>
+      <Sidebar />
     </div>
   );
 };

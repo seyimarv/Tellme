@@ -1,4 +1,4 @@
-const AcmeLogo = () => {
+const AcmeLogo = ({ ...props }) => {
   return (
     <svg
       fill="none"
@@ -6,6 +6,7 @@ const AcmeLogo = () => {
       viewBox="0 0 197 48"
       width="197"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g fill="#fff">
         <path
