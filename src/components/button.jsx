@@ -1,3 +1,5 @@
+import CircularLoader from "./Loader";
+
 /* eslint-disable react/prop-types */
 const Button = ({
   children,
@@ -20,7 +22,14 @@ const Button = ({
       } ${className}`}
       disabled={isLoading}
     >
-      {isLoading ? "Loading..." : children}
+      <span className="flex items-center justify-center">
+        <span>{children}</span>
+        {isLoading && (
+          <span className="ml-2">
+            <CircularLoader />
+          </span>
+        )}
+      </span>
     </button>
   );
 };

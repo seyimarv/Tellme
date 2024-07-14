@@ -1,14 +1,15 @@
 import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import { useLogoutMutation } from "../../redux/query/apiSlice";
+import { useDispatch } from "react-redux";
+import gsap from "gsap";
+import { clearCurrentUser } from "../../redux/user/reducer";
 import { navItems } from "../../utils/sidebar-items";
 import {
   FaSignOutAlt,
-  FaBackward,
-  FaForward,
   FaArrowCircleLeft,
   FaArrowCircleRight,
 } from "react-icons/fa";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import logo from "../../assets/Logos/t-high-resolution-logo-white-transparent.png";
 import Modal from "../Modal";
 import Divider from "../Divider";
@@ -24,6 +25,8 @@ const NavItem = ({ title, link, Img }) => {
 };
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const [logout, { isLoading, error }] = useLogoutMutation();
   const [isLogout, setIsLogout] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
   const sidebar = useRef();
@@ -40,6 +43,13 @@ const Sidebar = () => {
 
   const openLogout = () => setIsLogout(true);
   const closeLogout = () => setIsLogout(false);
+
+  const onLogout = async () => {
+    await logout();
+    dispatch(clearCurrentUser());
+    closeLogout();
+  };
+  console.log(error)
   return (
     <div ref={sidebar}>
       <Modal onClose={closeLogout} isOpen={isLogout}>
@@ -53,7 +63,9 @@ const Sidebar = () => {
           <Button variant="outline" onClick={closeLogout}>
             Cancel
           </Button>
-          <Button>Logout</Button>
+          <Button onClick={onLogout} isLoading={isLoading}>
+            Logout
+          </Button>
         </div>
       </Modal>
       <div className="w-[240px] fixed top-0 left-0 h-full border-r border-tertiary text-primary px-[24px] whitespace-nowrap sidebar">

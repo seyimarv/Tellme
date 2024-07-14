@@ -6,7 +6,8 @@ import {
   createAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   onAuthStateChangedListener,
-  getUser
+  getUser,
+  signOutUser,
 } from "../../utils/firebase/auth";
 
 export const apiSlice = createApi({
@@ -46,7 +47,15 @@ export const apiSlice = createApi({
           await createUserDocumentFromAuth(userCredential.user, {
             username: userCredential.user.displayName,
           });
-          //   return { data: userCredential.user };
+        } catch (error) {
+          return { error: { status: "CUSTOM_ERROR", error: error?.message } };
+        }
+      },
+    }),
+    logout: builder.mutation({
+      async queryFn() {
+        try {
+          await signOutUser();
         } catch (error) {
           return { error: { status: "CUSTOM_ERROR", error: error?.message } };
         }
@@ -67,7 +76,7 @@ export const apiSlice = createApi({
           return () => unsubscribe();
         });
       },
-    //   keepUnusedDataFor: Infinity,
+      //   keepUnusedDataFor: Infinity,
     }),
   }),
 });
@@ -76,5 +85,6 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useGoogleSignInMutation,
+  useLogoutMutation,
   useGetUserDataQuery,
 } = apiSlice;

@@ -6,7 +6,6 @@ import { useGoogleSignInMutation } from "../../redux/query/apiSlice";
 const AuthFormWrapper = ({
   title,
   children,
-  onGoogleSignIn,
   redirect = "Sign up",
   onSubmit,
 }) => {
@@ -23,12 +22,14 @@ const AuthFormWrapper = ({
           <Divider /> <p className="text-dark">Or continue with</p> <Divider />
         </div>
         <Button
-          className="w-full bg-tertiary flex gap-1 justify-center items-center"
+          className="w-full bg-tertiary"
           onClick={googleSignIn}
           isLoading={isLoading}
         >
-          <GoogleIcon />
-          <span>Log in</span>
+          <div className="flex gap-1 items-center justify-center">
+            <GoogleIcon />
+            <span>Log in</span>
+          </div>
         </Button>
       </form>
       <div className="m-auto">
