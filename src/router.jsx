@@ -9,13 +9,18 @@ import {
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Authentication/Login";
 import Signup from "./pages/Authentication/Signup";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Home";
 import { selectUser, selectisAuthenticated } from "./redux/user/selector";
 import { useSelector } from "react-redux";
+import MainLayout from "./components/MainLayout";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(selectisAuthenticated);
-  return <>{isAuthenticated ? <>{children}</> : <Navigate to={`/login`} />}</>;
+  return (
+    <MainLayout>
+      {isAuthenticated ? children : <Navigate to="/login" />}
+    </MainLayout>
+  );
 };
 
 const PublicRoute = ({ children }) => {

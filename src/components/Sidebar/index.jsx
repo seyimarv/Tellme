@@ -24,19 +24,19 @@ const NavItem = ({ title, link, Img }) => {
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ isToggled, setIsToggled, fullWidth, collapsedWidth }) => {
   const dispatch = useDispatch();
   const [logout, { isLoading, error }] = useLogoutMutation();
   const [isLogout, setIsLogout] = useState(false);
-  const [isToggled, setIsToggled] = useState(false);
+
   const sidebar = useRef();
   const { contextSafe } = useGSAP({ scope: sidebar });
 
   const onToggleSize = contextSafe(() => {
     const tl = gsap.timeline();
     !isToggled
-      ? tl.to(".sidebar", { width: 80 })
-      : tl.to(".sidebar", { width: 240 });
+      ? tl.to(".sidebar", { width: collapsedWidth })
+      : tl.to(".sidebar", { width: fullWidth });
 
     setIsToggled(!isToggled);
   });
@@ -49,9 +49,8 @@ const Sidebar = () => {
     dispatch(clearCurrentUser());
     closeLogout();
   };
-  console.log(error)
   return (
-    <div ref={sidebar}>
+    <div ref={sidebar} className="z-10">
       <Modal onClose={closeLogout} isOpen={isLogout}>
         <p className="text-xl">Sure you want to logout?</p>
         <p className="mt-1 mb-4 text-gray-400">
@@ -68,9 +67,9 @@ const Sidebar = () => {
           </Button>
         </div>
       </Modal>
-      <div className="w-[240px] fixed top-0 left-0 h-full border-r border-tertiary text-primary px-[24px] whitespace-nowrap sidebar">
+      <div className="w-[240px] fixed top-0 left-0 h-full border-r border-tertiary text-primary px-[24px] whitespace-nowrap sidebar bg-primary">
         <button
-          className="absolute right-0 translate-x-2 top-4 text-lg"
+          className="absolute right-0 translate-x-2 top-4 text-lg z-10"
           onClick={onToggleSize}
         >
           {!isToggled ? <FaArrowCircleLeft /> : <FaArrowCircleRight />}
