@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
 import HorrorImage from "../../assets/horror.jpg";
+import Pagination from "../../components/Pagination";
 import Button, { InteractionButton } from "../../components/button";
 import { FaReadme, FaRegThumbsUp, FaRegComment } from "react-icons/fa";
+import usePagination from "../../Hooks/usePagination";
+import StoryList from "../../components/StoryList";
 
 const Home = () => {
+  const { currentPage, onPageChange, count, setTotalCount } = usePagination();
+
+  useEffect(() => {
+    setTotalCount(2);
+  }, []);
   return (
     <div className="h-full">
       <div className="h-[95%] relative">
@@ -23,10 +32,7 @@ const Home = () => {
                 figure.
               </p>
               <div className="flex gap-2 mt-4 justify-center">
-                <Button
-                  className="bg-[white] text-black text-lg"
-                  Icon={FaReadme}
-                >
+                <Button className="bg-white text-darker text-lg" Icon={FaReadme}>
                   Read now
                 </Button>
                 <InteractionButton interactions={"21.5k"}>
@@ -39,6 +45,16 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* <Pagination
+        currentPage={currentPage}
+        count={count}
+        onPageChange={onPageChange}
+        infinite
+      /> */}
+      <StoryList />
+      <div>
+        heh
       </div>
     </div>
   );

@@ -69,7 +69,7 @@ const Sidebar = ({ isToggled, setIsToggled, fullWidth, collapsedWidth }) => {
       </Modal>
       <div className="w-[240px] fixed top-0 left-0 h-full border-r border-tertiary text-primary px-[24px] whitespace-nowrap sidebar bg-primary">
         <button
-          className="absolute right-0 translate-x-2 top-4 text-lg z-10"
+          className="absolute right-0 translate-x-2 top-4 text-lg "
           onClick={onToggleSize}
         >
           {!isToggled ? <FaArrowCircleLeft /> : <FaArrowCircleRight />}

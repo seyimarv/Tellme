@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -43,6 +43,7 @@ export default {
       layer: "#152A59", // Layer color
       calendar: "#3057AE", // Calendar color
       successLight: "#A9D3AB", // Light green color
+      border: "#515151",
     },
     fontFamily: {
       sans: ["Ubuntu", "sans-serif"],
@@ -65,6 +66,7 @@ export default {
         light: "#FAFAFA", // Light text color
         card: "#FFFFFF",
         dark: "#5F5F5F",
+        darker: "#000"
       },
       container: {
         center: true,

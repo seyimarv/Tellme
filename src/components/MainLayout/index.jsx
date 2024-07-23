@@ -15,7 +15,7 @@ const MainLayout = ({ children }) => {
         collapsedWidth={collapsedWidth}
       />
       <div
-        className={`transition-all duration-500 w-full z-1 h-full`}
+        className={`transition-all duration-500 w-full z-1 h-full overflow-x-hidden`}
         style={{
           transform: `translateX(${
             isSidebarToggled ? collapsedWidth : fullWidth

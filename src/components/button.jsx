@@ -47,13 +47,18 @@ const Button = ({
 
 export default Button;
 
-export const InteractionButton = ({ children, interactions, onClick }) => {
+export const InteractionButton = ({
+  children,
+  interactions,
+  onClick,
+  small,
+}) => {
   return (
-    <div className="flex items-center gap-1">
-      <Button variant="secondary" onClick={onClick} className="text-xl">
+    <div className={`${small && "text-sm"} flex items-center gap-1`}>
+      <Button variant="secondary" onClick={onClick} className={`${small && "px-[10px] py-2"}`}>
         {children}
       </Button>
-      {interactions !== undefined && <span>{interactions}</span>}
+      {interactions !== undefined && <span className="text-inherit">{interactions}</span>}
     </div>
   );
 };
