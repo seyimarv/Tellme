@@ -32,7 +32,7 @@ const Home = () => {
                 figure.
               </p>
               <div className="flex gap-2 mt-4 justify-center">
-                <Button className="bg-white text-darker text-lg" Icon={FaReadme}>
+                <Button className="bg-white text-lg text-darker" Icon={FaReadme}>
                   Read now
                 </Button>
                 <InteractionButton interactions={"21.5k"}>

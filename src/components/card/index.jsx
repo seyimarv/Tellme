@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, forwardRef } from "react";
 import { InteractionButton } from "../button";
 import { FaRegComment, FaRegThumbsUp } from "react-icons/fa";
 
@@ -38,7 +38,7 @@ const RevealedCard = ({ image, title, excerpt, isHovered }) => {
   return (
     <div
       className={`absolute top-0 left-0 w-full h-full transition-all  duration-300 delay-100 linear ${
-        isHovered ? "scale-125 opacity-100 z-40" : "scale-100 opacity-0 z-10"
+        isHovered ? "scale-[1.3] opacity-100 z-40" : "scale-100 opacity-0 z-10"
       }`}
       style={{
         transformOrigin: "inherit",
@@ -49,7 +49,7 @@ const RevealedCard = ({ image, title, excerpt, isHovered }) => {
   );
 };
 
-const Card = ({ image, title, excerpt, likes, comments }) => {
+const Card = forwardRef(({ image, title, excerpt, likes, comments }, ref) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = useCallback(() => {
@@ -62,9 +62,10 @@ const Card = ({ image, title, excerpt, likes, comments }) => {
 
   return (
     <div
-      className="relative origin-[50%_150%] first:origin-[0%_150%]"
+      className="relative origin-[50%_120%] first:origin-[0%_120%]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      ref={ref}
     >
       <BaseCard image={image} title={title} likes={likes} comments={comments} />
       <RevealedCard
@@ -77,6 +78,6 @@ const Card = ({ image, title, excerpt, likes, comments }) => {
       />
     </div>
   );
-};
+});
 
 export default Card;

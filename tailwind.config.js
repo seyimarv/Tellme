@@ -18,9 +18,6 @@ export default {
       orange: "#ff7849",
       green: "#13ce66",
       yellow: "#ffc82c",
-      // grayDark: "#273444",
-      // gray: "#8492a6",
-      // grayLight: "#d3dce6",
       primary: "#181818", // Primary background
       secondary: "#000000", // Secondary background
       tertiary: "#282828", // Tertiary background
@@ -66,7 +63,7 @@ export default {
         light: "#FAFAFA", // Light text color
         card: "#FFFFFF",
         dark: "#5F5F5F",
-        darker: "#000"
+        darker: "#000000"
       },
       container: {
         center: true,
