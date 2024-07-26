@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import CircularLoader from "./Loader";
 
 /* eslint-disable react/prop-types */
@@ -10,22 +11,19 @@ const Button = ({
   variant = "filled",
   Icon,
 }) => {
-  const baseClasses = "px-4 py-2 rounded-md text-primary";
-  const filledClasses = "bg-button";
-  const outlineClasses = "border border-button bg-transparent";
-  const secondaryClasses = "bg-[#0c0c0c] text-white border border-[#515151]";
+  const baseClasses = "px-4 py-2 rounded-md";
+  const variantClasses = clsx({
+    "bg-button text-primary": variant === "filled",
+    "border border-button bg-transparent text-primary": variant === "outline",
+    "bg-[#0c0c0c] text-white border border-[#515151]": variant === "secondary",
+    "bg-white text-lg text-darker": variant === "tertiary"
+  });
 
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`${baseClasses} ${
-        variant === "outline"
-          ? outlineClasses
-          : variant === "secondary"
-          ? secondaryClasses
-          : filledClasses
-      } ${className}`}
+      className={clsx(baseClasses, variantClasses, className)}
       disabled={isLoading}
     >
       <span className="flex items-center justify-center">
@@ -54,11 +52,17 @@ export const InteractionButton = ({
   small,
 }) => {
   return (
-    <div className={`${small && "text-sm"} flex items-center gap-1`}>
-      <Button variant="secondary" onClick={onClick} className={`${small && "px-[10px] py-2"}`}>
+    <div className={clsx(small && "text-sm", "flex items-center gap-1")}>
+      <Button
+        variant="secondary"
+        onClick={onClick}
+        className={clsx(small && "px-[10px] py-2")}
+      >
         {children}
       </Button>
-      {interactions !== undefined && <span className="text-inherit">{interactions}</span>}
+      {interactions !== undefined && (
+        <span className="text-inherit">{interactions}</span>
+      )}
     </div>
   );
 };

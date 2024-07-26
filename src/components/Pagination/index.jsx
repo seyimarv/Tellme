@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import Button from "../button";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
-const Pagination = ({
-  currentPage,
-  onPageChange,
-  count = 3,
-}) => {
+const Pagination = ({ currentPage, onPageChange, count = 3 }) => {
   const itemsCount = Array.from({ length: count }, (_, index) => index + 1);
+  console.log(count, itemsCount)
 
   const onNext = () => {
     if (currentPage === count) {
@@ -33,8 +30,8 @@ const Pagination = ({
       {itemsCount.map((item, index) => (
         <div key={index} className="flex gap-[0px]">
           <div
-            className={`w-[16px] h-[4px] rounded-sm bg-tertiary ${
-              index + 1 === currentPage ? "bg-[#D4AF37]" : ""
+            className={`w-[16px] h-[4px] rounded-sm ${
+              index + 1 == currentPage ? "bg-accent" : " bg-tertiary"
             }`}
           ></div>
         </div>

@@ -1,3 +1,5 @@
+import breakpoints, { pixelBreakpoints } from "./src/utils/breakpoints";
+
 const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config} */
@@ -5,10 +7,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1200px",
+      ...pixelBreakpoints,
     },
     colors: {
       ...colors,
@@ -63,7 +62,7 @@ export default {
         light: "#FAFAFA", // Light text color
         card: "#FFFFFF",
         dark: "#5F5F5F",
-        darker: "#000000"
+        darker: "#000000",
       },
       container: {
         center: true,
