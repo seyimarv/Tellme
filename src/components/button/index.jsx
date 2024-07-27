@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CircularLoader from "./Loader";
+import CircularLoader from "../Loader";
 
 /* eslint-disable react/prop-types */
 const Button = ({

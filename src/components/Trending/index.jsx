@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
-
 import usePagination from "../../Hooks/usePagination";
-import StoryList from "../../components/StoryList";
+import StoryList from "../StoryList";
 import Image from "../../assets/love.jpg";
-import TopPick from "../../components/Home/TopPick";
-import Trending from "../../components/Trending";
 
 const cardData = [
   {
@@ -111,25 +107,20 @@ const cardData = [
   // },
 ];
 
-const Home = () => {
+const Trending = () => {
   const { currentPage, onPageChange, count, setTotalCount } = usePagination();
 
   return (
-    <div className="h-full">
-      <TopPick />
-      <StoryList
-        totalDataLength={cardData.length}
-        cardData={cardData}
-        currentPage={currentPage}
-        onPageChange={onPageChange}
-        setTotalCount={setTotalCount}
-        count={count}
-        sectionLabel={"Top stories"}
-      />
-      <Trending />
-      <div>Hello</div>
-    </div>
+    <StoryList
+      totalDataLength={cardData.length}
+      cardData={cardData}
+      currentPage={currentPage}
+      onPageChange={onPageChange}
+      setTotalCount={setTotalCount}
+      count={count}
+      sectionLabel={"Trending"}
+    />
   );
 };
 
-export default Home;
+export default Trending;

@@ -4,7 +4,7 @@ import Xlogo from "../../assets/Xsvg.jsx";
 import LinkedinIcon from "../../assets/Linkedin.jsx";
 import DiscordIcon from "../../assets/discord";
 import TelegramIcon from "../../assets/telegram.jsx";
-import Button from "../button.jsx";
+import Button from "../button/index.jsx";
 
 const socialLinks = [
   {
