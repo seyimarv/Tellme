@@ -2,17 +2,8 @@ import useMatchesScreenSize from "../../Hooks/useMatchesScreenSize";
 import breakpoints from "../../utils/breakpoints";
 import Card from "../Card";
 import Pagination from "../Pagination";
-import React, { useRef, useState, useEffect, useCallback } from "react";
-
-function debounce(fn, delay) {
-  let timeoutId;
-  return (...args) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      fn(...args);
-    }, delay);
-  };
-}
+import React, { useRef, useState, useEffect } from "react";
+import debounce from "../../utils/debounce";
 
 const StoryList = ({
   totalDataLength,
@@ -94,6 +85,7 @@ const StoryList = ({
     };
   }, [cardData?.length, setTotalCount]);
 
+  //mobile scroll
   useEffect(() => {
     if (isMobile) {
       return;
@@ -128,13 +120,10 @@ const StoryList = ({
 
     container.addEventListener("scroll", handleScroll);
 
-    // Cleanup
     return () => {
       container.removeEventListener("scroll", handleScroll);
     };
   }, [onPageChange, cardsPerRow]);
-
-  console.log(currentPage);
 
   return (
     <div className="container my-10 md:mx-5 max-w-full">
@@ -149,8 +138,6 @@ const StoryList = ({
       <div
         className="flex gap-6 transition-transform duration-300 linear px-5 md:px-0 overflow-x-scroll overflow-y-hidden scrollbar-hidden md:overflow-visible"
         ref={containerRef}
-        // onTouchStart={handleTouchStart}
-        // onTouchMove={handleTouchMove}
       >
         {cardData.map((card, index) => (
           <Card
